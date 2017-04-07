@@ -1,0 +1,44 @@
+
+;<Program title>
+
+jmp start
+
+;data
+
+;question
+;the serise is available at location m+1.
+;And the number of element of serise is available at memory location m.
+;Store the result of sorting at memory location m+1 and onwards
+
+;code
+start: nop
+
+lxi h,000h
+mov c,m
+
+back: lxi h,000h
+mov d,m
+dcr d
+inx h
+mov a,m
+
+loop: inx h
+mov b,m
+cmp b
+jnc ahead
+dcx h
+mov m,a
+mov a,b
+jmp go
+
+ahead: dcx h
+mov m,b
+
+go: inx h
+dcr d
+jnz loop
+mov m,a
+dcr c
+jnz back
+
+hlt
